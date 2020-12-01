@@ -34,6 +34,22 @@ header img {
     padding: 100px 0;
 }
 
+.genreSelect {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.genreSelect select {
+  width: 150px;
+  height: 20px;
+}
+
+.genreSelect label {
+  margin-right: 15px;
+  color: white;
+}
+
 .cd {
     display: flex;
     justify-content: flex-start;

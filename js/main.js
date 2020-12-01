@@ -20,13 +20,30 @@ In base a cosa scegliamo nella select vedremo solo i corrispondenti cd.
 const myApp = new Vue({
   el: "#root",
   data: {
-    dischi: ''
+    dischi: [],
+    genres: [],
+    selectedGenre: ''
   },
   mounted: function(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then(result => {
       this.dischi = result.data.response;
       console.log(this.dischi);
+      for (let i = 0; i < this.dischi.length; i++){
+        if (this.genres.indexOf(this.dischi[i].genre) === -1) {
+          this.genres.push(this.dischi[i].genre)
+        }
+      }
     })
+  },
+  methods: {
+
+    filterGenre: function() {
+      if(this.selectedGenre == ''){
+        return this.dischi
+      } else {
+        return  this.dischi.filter(disco => disco.genre.includes(this.selectedGenre))
+      }
+    }
   }
 })

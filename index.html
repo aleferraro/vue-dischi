@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>ex-dischi-musicali</title>
+  <head>
+    <meta charset="utf-8">
+    <title>ex-dischi-musicali</title>
 
-        <!-- Axios -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
-        <!-- Vue 2.6.12 Local File -->
-        <script src="libs/vue.js"></script>
+    <!-- Vue 2.6.12 Local File -->
+    <script src="libs/vue.js"></script>
 
-        <!-- Font -->
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <img src="img/logo.png" alt="logo" />
-            </div>
-        </header>
-        <div id="root" class="cds-container container">
-            <!-- Disco ad esempio -->
-            <div v-for="disco in dischi" class="cd">
-              <img :src="disco.poster" alt="">
-              <h3>{{ disco.title }}</h3>
-              <span class="author">{{ disco.author }}</span>
-              <span class="year">{{ disco.year }}</span>
-            </div>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <img src="img/logo.png" alt="logo" />
+      </div>
+    </header>
+    <div id="root">
+      <div class="genreSelect">
+        <label for="genre">Filtra per Genere:</label>
+        <select name="genre" v-model="selectedGenre" @change="filterGenre">
+          <option v-for="genre in genres" :value="genre">{{ genre }}</option>
+        </select>
+      </div>
+      <div class="cds-container container">
+
+        <!-- Disco ad esempio -->
+        <div v-for="disco in filterGenre()" class="cd">
+          <img :src="disco.poster" alt="">
+          <h3>{{ disco.title }}</h3>
+          <span class="author">{{ disco.author }}</span>
+          <span class="year">{{ disco.year }}</span>
         </div>
-
-        <!-- Custom JS -->
-        <script src="js/main.js" charset="utf-8"></script>
-    </body>
+      </div>
+    </div>
+    <!-- Custom JS -->
+    <script src="js/main.js" charset="utf-8"></script>
+  </body>
 </html>
