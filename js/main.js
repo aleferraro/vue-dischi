@@ -22,7 +22,7 @@ const myApp = new Vue({
   data: {
     dischi: [],
     genres: [],
-    selectedGenre: ''
+    selectedGenre: 'all'
   },
   mounted: function(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
@@ -39,7 +39,7 @@ const myApp = new Vue({
   methods: {
 
     filterGenre: function() {
-      if(this.selectedGenre == ''){
+      if(this.selectedGenre == 'all'){
         return this.dischi
       } else {
         return  this.dischi.filter(disco => disco.genre.includes(this.selectedGenre))
